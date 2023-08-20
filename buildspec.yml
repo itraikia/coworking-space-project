@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      docker: 18
+      docker: 22
   pre_build:
     commands:
       - echo Logging into Amazon ECR...
@@ -12,7 +12,7 @@ phases:
     commands:
       - echo Building the Docker image...
       - docker build -t 458077315349.dkr.ecr.us-east-1.amazonaws.com/ecr-demo:1.0.0 .
-  post-build:
+  post_build:
     commands:
       - echo Pushing the Docker image...
       - docker push 458077315349.dkr.ecr.us-east-1.amazonaws.com/ecr-demo:1.0.0
