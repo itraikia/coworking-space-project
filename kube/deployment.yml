@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: coworking-space
+  labels:
+    name: coworking-space
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      service: coworking-space
+  template:
+    metadata:
+      labels:
+        service: coworking-space
+    spec:
+      containers:
+      - name: api-container
+        image: 458077315349.dkr.ecr.us-east-1.amazonaws.com/ecr-demo:latest
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /health_check
+            port: 5050
+          initialDelaySeconds: 5
+          timeoutSeconds: 2
+        readinessProbe:
+          httpGet:
+            path: "/readiness_check"
+            port: 5050
+          initialDelaySeconds: 5
+          timeoutSeconds: 5
+        env:
+        - name: DB_USERNAME
+          value: postgres
+        - name: DB_PASSWORD
+          value: 2Z21h1mviM
+        - name: DB_HOST
+          value: 172.31.86.124
+        - name: DB_PORT
+          value: "5432"
+        - name: DB_NAME
+          value: postgres
+      restartPolicy: Always
