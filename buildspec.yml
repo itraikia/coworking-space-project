@@ -12,7 +12,8 @@ phases:
     commands:
       - echo Building the Docker image...
       - docker build -t ecr-demo .
+      - docker tag ecr-demo:latest 458077315349.dkr.ecr.us-east-1.amazonaws.com/ecr-demo:latest
   post_build:
     commands:
       - echo Pushing the Docker image...
-      - docker push ecr-demo:latest
+      - docker push 458077315349.dkr.ecr.us-east-1.amazonaws.com/ecr-demo:latest
