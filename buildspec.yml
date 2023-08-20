@@ -15,4 +15,4 @@ phases:
   post_build:
     commands:
       - echo Pushing the Docker image...
-      - docker push 458077315349.dkr.ecr.us-east-1.amazonaws.com/ecr-demo:latest
+      - docker push ecr-demo:latest
